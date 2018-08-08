@@ -4,14 +4,8 @@
 <html>
     <jsp:include page="./header.jsp"></jsp:include>
         <body>
-            <h3>Create new book</h3>
+            <h3>Create new category</h3>
         <form:form class="form-horizontal" method="post" modelAttribute="cate" action="./create">
-<!--            <div class="form-group">
-                <label class="control-label col-sm-2" for="id">ID</label>
-                <div class="col-sm-10">
-                    <%--<form:input path="id" type="text" class="form-control" id="id" placeholder="ID"/>--%>
-                </div>
-            </div>-->
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">Name</label>
                 <div class="col-sm-10">
