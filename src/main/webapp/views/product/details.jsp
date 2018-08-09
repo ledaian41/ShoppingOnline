@@ -36,9 +36,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="thumnail">Thumnail</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="thumnail" placeholder="Thumnail" value="${product.thumnail}" readonly="true"/>
+                    <img src="${pageContext.request.contextPath}/image/${product.thumnail}" width="20%" height="20%"/>
                 </div>
             </div>
             <div class="form-group">

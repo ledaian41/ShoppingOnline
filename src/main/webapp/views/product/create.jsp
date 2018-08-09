@@ -6,7 +6,7 @@
     <jsp:include page="./header.jsp"/>
     <body>
         <h3>Create new product</h3>
-        <form:form class="form-horizontal" method="post" modelAttribute="product" action="./create">
+        <form:form class="form-horizontal" method="post" modelAttribute="product" action="./create" enctype="multipart/form-data">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">Name</label>
                 <div class="col-sm-10">
@@ -32,9 +32,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="thumnail">Thumnail</label>
+                <label class="control-label col-sm-2" for="file">Upload file</label>
                 <div class="col-sm-10">
-                    <form:input path="thumnail" type="text" class="form-control" id="thumnail" placeholder="Thumnail"/>
+                    <input name="file" type="file"/>
                 </div>
             </div>
             <div class="form-group">

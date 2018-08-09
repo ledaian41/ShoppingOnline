@@ -13,6 +13,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Image</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,6 +22,7 @@
                         <tr>
                             <td><c:out value="${row.id}"/></td>
                             <td><c:out value="${row.name}"/></td>
+                            <td><img src="${pageContext.request.contextPath}/image/${row.thumnail}" width="10%" height="10%"/></td>
                             <td>
                                 <a class="btn btn-info" href="./details?id=${row.id}" >Details</a>
                                 <a class="btn btn-warning" href="./edit?id=${row.id}" >Edit</a>

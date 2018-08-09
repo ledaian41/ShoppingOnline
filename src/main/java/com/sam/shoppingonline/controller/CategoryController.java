@@ -28,14 +28,16 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/cate")
 public class CategoryController {
 
-    private static final Logger LOGGER = Logger.getLogger(CategoryController.class.getName());
+    private static final Logger LOGGER = Logger
+            .getLogger(CategoryController.class.getName());
     @Autowired
     private CategoryRepository categoryRepository;
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() {
         LOGGER.log(Level.INFO, "info:{0}");
-        return new ModelAndView("/cate/index", "listCate", categoryRepository.findAll());
+        return new ModelAndView("/cate/index", "listCate",
+                categoryRepository.findAll());
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -55,14 +57,18 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/details", method = RequestMethod.GET)
-    public ModelAndView details(@RequestParam(value = "id", required = false) int id) {
+    public ModelAndView details(
+            @RequestParam(value = "id", required = false) int id) {
         LOGGER.log(Level.INFO, "info:{0}");
-        return new ModelAndView("/cate/details", "cate", categoryRepository.findOne(id));
+        return new ModelAndView("/cate/details", "cate",
+                categoryRepository.findOne(id));
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView edit(@RequestParam(value = "id", required = false) int id) {
-        return new ModelAndView("/cate/edit", "cate", categoryRepository.findOne(id));
+    public ModelAndView edit(
+            @RequestParam(value = "id", required = false) int id) {
+        return new ModelAndView("/cate/edit", "cate",
+                categoryRepository.findOne(id));
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -80,5 +86,10 @@ public class CategoryController {
     public String delete(@RequestParam(value = "id", required = false) int id) {
         categoryRepository.delete(id);
         return "redirect:/cate/index";
+    }
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String error() {
+        return "/cate/error";
     }
 }
