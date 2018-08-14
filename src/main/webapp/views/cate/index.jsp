@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-    <jsp:include page="./header.jsp"></jsp:include>
+    <jsp:include page="../header.jsp"></jsp:include>
         <body>
             <h4 class="title">Categories</h4>
             <form action="index" method="GET">

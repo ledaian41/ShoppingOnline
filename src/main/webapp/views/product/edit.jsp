@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-    <jsp:include page="./header.jsp"/>
+    <jsp:include page="../header.jsp"/>
     <body>
         <h3>Update Product</h3>
         <form:form class="form-horizontal" method="post" modelAttribute="product" action="./edit" enctype="multipart/form-data">

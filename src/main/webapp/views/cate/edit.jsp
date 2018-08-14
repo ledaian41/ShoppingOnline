@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <jsp:include page="./header.jsp"></jsp:include>
+    <jsp:include page="../header.jsp"></jsp:include>
         <body>
             <h3>Update Category</h3>
         <form:form class="form-horizontal" method="post" modelAttribute="cate" action="./edit">

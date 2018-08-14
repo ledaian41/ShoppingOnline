@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <jsp:include page="./header.jsp"/>
+    <jsp:include page="../header.jsp"/>
     <body>
         <h2>Product details</h2>
         <div class="form-horizontal">

@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-    <jsp:include page="./header.jsp"/>
+    <jsp:include page="../header.jsp"/>
     <body>
         <h4 class="title">Products</h4>    
         <form action="index" method="GET">
@@ -32,6 +32,7 @@
                             <td><c:out value="${row.name}"/></td>
                             <td><img src="${pageContext.request.contextPath}/image/${row.thumnail}" width="10%" height="10%" alt="image ${row.name}"/></td>
                             <td>
+                                <a class="btn btn-info" href="../shop/order?id=${row.id}&quantity=1" >Buy</a>
                                 <a class="btn btn-info" href="./details?id=${row.id}" >Details</a>
                                 <a class="btn btn-warning" href="./edit?id=${row.id}" >Edit</a>
                                 <a class="btn btn-danger" href="./delete?id=${row.id}" >Delete</a>
@@ -69,5 +70,6 @@
         </div>
     </s:if>
     <a class="btn btn-primary" href="${pageContext.request.contextPath}/cate/index">Categories</a>
+    <a class="btn btn-primary" href="${pageContext.request.contextPath}/shop/index">Shopping Cart</a>
 </body>
 </html>
