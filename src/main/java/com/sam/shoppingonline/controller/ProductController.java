@@ -9,13 +9,19 @@ import com.sam.shoppingonline.entity.FileModel;
 import com.sam.shoppingonline.entity.Product;
 import com.sam.shoppingonline.repository.CategoryRepository;
 import com.sam.shoppingonline.repository.ProductRepository;
+import com.sam.shoppingonline.util.Constant;
+import com.sam.shoppingonline.util.PagingUtil;
 import com.sam.shoppingonline.util.UploadFileUtil;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -47,10 +53,32 @@ public class ProductController {
     private CategoryRepository categoryRepository;
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView index() {
+    public ModelAndView index(
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            ModelMap mm) {
+        if (page == null) {
+            page = 0;
+        }else {
+            page--;
+        }
+        List<Product> listProduct;
+        long totalPage;
+        Sort sort = new Sort(new Sort.Order(Sort.Direction.ASC, "name"));
+        Pageable pageable = new PageRequest(page, Constant.NUMBER_ELEMENT_IN_PAGE, sort);
+        if (keyword == null || keyword.isEmpty()) {
+            listProduct = productRepository.paging(pageable);
+            totalPage = PagingUtil.totalPage(productRepository.count());
+            mm.remove("keyword");
+        } else {
+            listProduct = productRepository.findAndPaging(keyword, pageable);
+            totalPage = PagingUtil.totalPage(productRepository.countResultForSearch(keyword));
+            mm.put("keyword", keyword);
+        }
+        mm.put("page", page + 1);
+        mm.put("totalPage", totalPage);
         LOGGER.log(Level.INFO, "info:{0}");
-        return new ModelAndView("/product/index", "listProduct",
-                productRepository.findAll());
+        return new ModelAndView("/product/index", "listProduct", listProduct);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
