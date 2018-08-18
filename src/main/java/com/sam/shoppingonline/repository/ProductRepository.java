@@ -26,4 +26,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     
     @Query(value = "SELECT COUNT(p) FROM Product p WHERE LOWER(p.name) LIKE CONCAT('%',LOWER(:name),'%')")
     public Integer countResultForSearch(@Param("name") String name);
+    
+    @Query(value = "SELECT p FROM Product p WHERE p.category.id = :cateId")
+    public List<Product> searchByCategory(@Param("cateId") Integer cateId, Pageable pageable);
+    
+    @Query(value = "SELECT COUNT(p) FROM Product p WHERE p.category.id = :cateId")
+    public Integer countResultSearchByCategory(@Param("cateId") Integer cateId);
 }

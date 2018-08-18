@@ -17,7 +17,7 @@ public class PagingUtil {
     public static long totalPage(long size) {
         if (size != 0) {
             long totalPage = size / Constant.NUMBER_ELEMENT_IN_PAGE;
-            if (size % 5 != 0) {
+            if (size % Constant.NUMBER_ELEMENT_IN_PAGE != 0) {
                 totalPage++;
             }
             return totalPage;

@@ -6,7 +6,7 @@
     <jsp:include page="../header.jsp"/>
     <body class="content">
         <h1>Shopping Cart</h1>
-        <a href="../product/index">Go to shopping</a>
+        <a href="../home/index">Go to shopping</a>
         <c:choose>
             <c:when test="${myCart.size() > 0}">
                 <div class="content table-responsive table-full-width">

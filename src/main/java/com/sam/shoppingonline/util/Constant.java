@@ -11,5 +11,5 @@ package com.sam.shoppingonline.util;
  */
 public class Constant {
 
-    public static final int NUMBER_ELEMENT_IN_PAGE = 5;
+    public static final int NUMBER_ELEMENT_IN_PAGE = 6;
 }
