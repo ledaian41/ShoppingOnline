@@ -16,6 +16,7 @@
                 <label class="control-label col-sm-2" for="name">Name</label>
                 <div class="col-sm-10">
                     <form:input path="name" type="text" class="form-control" id="name" placeholder="Name"/>
+                    <form:errors path="name" cssStyle="color: red"/>
                 </div>
             </div>
             <div class="form-group">

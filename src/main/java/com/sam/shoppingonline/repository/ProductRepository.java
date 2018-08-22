@@ -23,13 +23,25 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query(value = "SELECT p FROM Product p WHERE LOWER(p.name) LIKE CONCAT('%',LOWER(:name),'%')")
     public List<Product> findAndPaging(@Param("name") String name, Pageable pageable);
-    
+
     @Query(value = "SELECT COUNT(p) FROM Product p WHERE LOWER(p.name) LIKE CONCAT('%',LOWER(:name),'%')")
     public Integer countResultForSearch(@Param("name") String name);
-    
+
     @Query(value = "SELECT p FROM Product p WHERE p.category.id = :cateId")
     public List<Product> searchByCategory(@Param("cateId") Integer cateId, Pageable pageable);
-    
+
     @Query(value = "SELECT COUNT(p) FROM Product p WHERE p.category.id = :cateId")
-    public Integer countResultSearchByCategory(@Param("cateId") Integer cateId);
+    public Integer countProductByCategory(@Param("cateId") Integer cateId);
+    
+    @Query(value = "SELECT MAX(p.price) FROM Product p WHERE p.category.id = :cateId")
+    public Double maxPriceWithCategory(@Param("cateId") Integer cateId);
+    
+    @Query(value = "SELECT MIN(p.price) FROM Product p WHERE p.category.id = :cateId")
+    public Double minPriceWithCategory(@Param("cateId") Integer cateId);
+    
+    @Query(value = "SELECT SUM(p.price) FROM Product p WHERE p.category.id = :cateId")
+    public Double totalPriceWithCategory(@Param("cateId") Integer cateId);
+    
+    @Query(value = "SELECT AVG(p.price) FROM Product p WHERE p.category.id = :cateId")
+    public Double averagePriceWithCategory(@Param("cateId") Integer cateId);
 }

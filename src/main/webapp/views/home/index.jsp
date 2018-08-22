@@ -57,13 +57,15 @@
                                 <c:forEach var="row" items="${listProduct}">
                                     <div class="col-sm-4 col-lg-4 col-md-4">
                                         <div class="thumbnail">
-                                            <img src="${pageContext.request.contextPath}/image/${row.thumnail}" alt="image ${row.name}">
+                                            <a href="./details?id=${row.id}" >
+                                                <img src="${pageContext.request.contextPath}/image/${row.thumnail}" alt="image ${row.name}">
+                                            </a>
                                             <div class="caption">
                                                 <h4 class="pull-right">$${row.price}</h4>
                                                 <h4><a href="./details?id=${row.id}">${row.name}</a>
                                                 </h4>
                                                 <p>${row.description}.</p>
-                                                <a class="btn btn-default" href="../shop/order?id=${row.id}&quantity=1" >Buy</a>
+                                                <a class="btn btn-default" href="${pageContext.request.contextPath}/shop/order?id=${row.id}&quantity=1" >Buy</a>
                                             </div>
                                         </div>
                                     </div> 

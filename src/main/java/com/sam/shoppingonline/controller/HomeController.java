@@ -71,7 +71,7 @@ public class HomeController {
                 listProduct = productRepository.searchByCategory(cateId,
                         pageable);
                 totalPage = PagingUtil.totalPage(
-                        productRepository.countResultSearchByCategory(cateId));
+                        productRepository.countProductByCategory(cateId));
                 mm.put("cateId", cateId);
                 mm.remove("keyword");
             }

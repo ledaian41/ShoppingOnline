@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,6 +28,8 @@ public class Category implements Serializable {
     @Column(name = "id")
     private int id;
     @Column(name = "name", nullable = true)
+    @NotNull
+    @Size(min = 1, max = 10)
     private String name;
 
     public Category() {

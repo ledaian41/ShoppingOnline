@@ -78,7 +78,7 @@ public class CategoryController {
             BindingResult result, ModelMap model) {
         LOGGER.log(Level.INFO, "info:{0}");
         if (result.hasErrors()) {
-            return "redirect:/cate/error";
+            return "/cate/create";
         }
         categoryRepository.save(cate);
         return "redirect:/cate/index";
@@ -104,7 +104,7 @@ public class CategoryController {
             @ModelAttribute("cate") Category cate,
             BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
-            return "redirect:/cate/error";
+            return "/cate/edit";
         }
         categoryRepository.save(cate);
         return "redirect:/cate/index";

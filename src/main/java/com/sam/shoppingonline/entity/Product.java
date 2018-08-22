@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -29,9 +31,12 @@ public class Product implements Serializable {
     private int id;
 
     @Column(name = "name")
+    @NotNull
+    @Size(min = 1, max = 50)
     private String name;
 
     @Column(name = "description")
+    @Size(min = 1, max = 80)
     private String description;
 
     @Column(name = "price")
