@@ -4,7 +4,7 @@
 <html>
     <jsp:include page="../header.jsp"/>
     <body>
-        <jsp:include page="../navigation.jsp"/>
+        <jsp:include page="../customer_nav.jsp"/>
         <!-- Page Content -->
         <div class="container">
             <div class="row">
@@ -35,13 +35,13 @@
                                         </ol>
                                         <div class="carousel-inner">
                                             <div class="item active">
-                                                <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                                <img class="slide-image" src="${pageContext.request.contextPath}/resources/images/banner1.jpg" alt="banner 1">
                                             </div>
                                             <div class="item">
-                                                <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                                <img class="slide-image" src="${pageContext.request.contextPath}/resources/images/banner2.jpg" alt="banner 2">
                                             </div>
                                             <div class="item">
-                                                <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                                <img class="slide-image" src="${pageContext.request.contextPath}/resources/images/banner3.jpg" alt="banner 3">
                                             </div>
                                         </div>
                                         <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

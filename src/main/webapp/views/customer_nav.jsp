@@ -5,11 +5,16 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Clothes Shopping Online</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/home/index">Clothes Shopping Online</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="${pageContext.request.contextPath}/shop/index"><i class="fas fa-shopping-cart"></i>
+                        Cart
+                    </a>
+                </li>
                 <li>
                     <sec:authorize access="isAuthenticated()">
                         <sec:authentication var="principal" property="principal" />

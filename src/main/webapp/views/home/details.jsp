@@ -4,7 +4,7 @@
 <html>
     <jsp:include page="../header.jsp"/>
     <body>
-        <jsp:include page="../navigation.jsp"/>
+        <jsp:include page="../customer_nav.jsp"/>
         <!-- Page Content -->
         <div class="container">
             <div class="row">

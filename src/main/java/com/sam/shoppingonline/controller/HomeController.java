@@ -10,7 +10,6 @@ import com.sam.shoppingonline.repository.CategoryRepository;
 import com.sam.shoppingonline.repository.ProductRepository;
 import com.sam.shoppingonline.util.Constant;
 import com.sam.shoppingonline.util.PagingUtil;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

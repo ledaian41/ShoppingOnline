@@ -59,7 +59,7 @@ public class ProductController {
             ModelMap mm) {
         if (page == null) {
             page = 0;
-        }else {
+        } else {
             page--;
         }
         List<Product> listProduct;
@@ -91,11 +91,12 @@ public class ProductController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("product") Product product,
-            @Validated FileModel file, BindingResult result, ModelMap model)
+            BindingResult result, @Validated FileModel file, ModelMap model)
             throws IOException {
         LOGGER.log(Level.INFO, "info:{0}");
         if (result.hasErrors()) {
-            return "redirect:/product/error";
+            model.put("listCate", categoryRepository.findAll());
+            return "/product/create";
         }
         if (!file.getFile().isEmpty()) {
 
@@ -131,11 +132,11 @@ public class ProductController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@Valid @ModelAttribute("product") Product product,
-            @Validated FileModel file, BindingResult result,
+            BindingResult result, @Validated FileModel file,
             ModelMap model) throws IOException {
         if (result.hasErrors()) {
-            System.err.println(result);
-            return "redirect:/product/error";
+            model.put("listCate", categoryRepository.findAll());
+            return "/product/edit";
         }
         if (!file.getFile().isEmpty()) {
 
@@ -155,10 +156,5 @@ public class ProductController {
     public String delete(@RequestParam(value = "id", required = false) int id) {
         productRepository.delete(id);
         return "redirect:/product/index";
-    }
-
-    @RequestMapping(value = "/error", method = RequestMethod.GET)
-    public String error() {
-        return "/product/error";
     }
 }

@@ -35,7 +35,7 @@ public class ReportController {
     @Autowired
     private ProductRepository productRepository;
     
-    @RequestMapping(value = "/product", method = RequestMethod.GET)
+    @RequestMapping(value = "/stock", method = RequestMethod.GET)
     public ModelAndView getProductReport(ModelMap mm) {
         List<Category> listCate = categoryRepository.findAll();
         List<Report> listReport = new ArrayList<>();
@@ -70,7 +70,7 @@ public class ReportController {
             listReport.add(report);
         }
         LOGGER.log(Level.INFO, "info:{0}");
-        return new ModelAndView("/report/product", "listReport", listReport);
+        return new ModelAndView("/report/stock", "listReport", listReport);
     }
     
 }

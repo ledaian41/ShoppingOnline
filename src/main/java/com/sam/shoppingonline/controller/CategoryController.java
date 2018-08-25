@@ -6,7 +6,9 @@
 package com.sam.shoppingonline.controller;
 
 import com.sam.shoppingonline.entity.Category;
+import com.sam.shoppingonline.entity.Product;
 import com.sam.shoppingonline.repository.CategoryRepository;
+import com.sam.shoppingonline.repository.ProductRepository;
 import com.sam.shoppingonline.util.Constant;
 import com.sam.shoppingonline.util.PagingUtil;
 import java.util.List;
@@ -33,12 +35,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(value = "/cate")
 public class CategoryController {
-    
+
     private static final Logger LOGGER = Logger
             .getLogger(CategoryController.class.getName());
     @Autowired
     private CategoryRepository categoryRepository;
-    
+    @Autowired
+    private ProductRepository productRepository;
+
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index(
             @RequestParam(value = "page", required = false) Integer page,
@@ -67,12 +71,12 @@ public class CategoryController {
         LOGGER.log(Level.INFO, "info:{0}");
         return new ModelAndView("/cate/index", "listCate", listCate);
     }
-    
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView create() {
         return new ModelAndView("/cate/create", "cate", new Category());
     }
-    
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("cate") Category cate,
             BindingResult result, ModelMap model) {
@@ -83,7 +87,7 @@ public class CategoryController {
         categoryRepository.save(cate);
         return "redirect:/cate/index";
     }
-    
+
     @RequestMapping(value = "/details", method = RequestMethod.GET)
     public ModelAndView details(
             @RequestParam(value = "id", required = false) int id) {
@@ -91,14 +95,14 @@ public class CategoryController {
         return new ModelAndView("/cate/details", "cate",
                 categoryRepository.findOne(id));
     }
-    
+
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView edit(
             @RequestParam(value = "id", required = false) int id) {
         return new ModelAndView("/cate/edit", "cate",
                 categoryRepository.findOne(id));
     }
-    
+
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@Valid
             @ModelAttribute("cate") Category cate,
@@ -109,13 +113,18 @@ public class CategoryController {
         categoryRepository.save(cate);
         return "redirect:/cate/index";
     }
-    
+
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String delete(@RequestParam(value = "id", required = false) int id) {
+        List<Product> products = productRepository.searchByCategory(id, null);
+        for (Product product : products) {
+            product.setCategory(null);
+        }
+        productRepository.save(products);
         categoryRepository.delete(id);
         return "redirect:/cate/index";
     }
-    
+
     @RequestMapping(value = "/error", method = RequestMethod.GET)
     public String error() {
         return "/cate/error";

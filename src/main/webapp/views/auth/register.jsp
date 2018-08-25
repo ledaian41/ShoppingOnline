@@ -17,34 +17,49 @@
         <link href="${pageContext.request.contextPath}/resources/css/util.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>Register</h1>
-        <form action="/register" th:object="${user}" method="POST" enctype="utf8">
-            <div>
-                <label>First name</label>
-                <input class="input100" type="text" name="firstName" placeholder="First name">
+        <div class="container center-block" style="padding-top: 150px;">
+            <h1 style="text-align: center;">Register</h1>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <form class="form-horizontal" action="/register" th:object="${user}" method="POST" enctype="utf8">
+                    <div class="form-group">
+                        <label>First name</label>
+                        <input class="input100" type="text" name="firstName" placeholder="First name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last name</label>
+                        <input class="input100" type="text" name="lastName" placeholder="Last name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone number</label>
+                        <input class="input100" type="text" name="phone" placeholder="Phone number">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input class="input100" type="text" name="address" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input class="input100" type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm</label>
+                        <input class="input100" type="password" name="matchingPassword" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-6">
+                            <div class="container-login100-form-btn">
+                                <button class="login100-form-btn" type="submit">Submit</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="container-login100-form-btn">
+                                <a class="login100-form-btn" href="./login">login</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div>
-                <label>Last name</label>
-                <input class="input100" type="text" name="lastName" placeholder="Last name">
-            </div>
-            <div>
-                <label>Phone number</label>
-                <input class="input100" type="text" name="phone" placeholder="Phone number">
-            </div>
-            <div>
-                <label>Address</label>
-                <input class="input100" type="text" name="address" placeholder="Address">
-            </div>
-            <div>
-                <label>Password</label>
-                <input class="input100" type="password" name="password" placeholder="Password">
-            </div>
-            <div>
-                <label>Confirm</label>
-                <input class="input100" type="password" name="matchingPassword" placeholder="Password">
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-        <a href="./login">login</a>
+        </div>
     </body>
 </html>

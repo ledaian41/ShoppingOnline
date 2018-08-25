@@ -4,7 +4,9 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2018</p>
+                <p><strong>Clothes shopping online</strong></p>
+                <p><strong>Phone: 0120333927</strong></p>
+                <p><strong>Copyright &copy; Your Website 2018</strong></p>
             </div>
         </div>
     </footer>
