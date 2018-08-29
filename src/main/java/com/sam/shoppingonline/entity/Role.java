@@ -39,6 +39,7 @@ public class Role {
     private User username;
 
     public Role() {
+        this.setROLE("ROLE_USER");
     }
 
     public int getUser_role_id() {
@@ -57,7 +58,6 @@ public class Role {
         this.ROLE = ROLE;
     }
 
-
     public User getUsername() {
         return username;
     }
@@ -65,6 +65,5 @@ public class Role {
     public void setUsername(User username) {
         this.username = username;
     }
-    
-    
+
 }

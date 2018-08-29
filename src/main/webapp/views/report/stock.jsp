@@ -40,10 +40,10 @@
                                 <tr>
                                     <td><c:out value="${row.group}"/></td>
                                     <td><c:out value="${row.count}"/></td>
-                                    <td><c:out value="${row.sum}"/></td>
-                                    <td><c:out value="${row.min}"/></td>
-                                    <td><c:out value="${row.max}"/></td>
-                                    <td><c:out value="${row.avg}"/></td>
+                                    <td><c:out value="$${row.sum}"/></td>
+                                    <td><c:out value="$${row.min}"/></td>
+                                    <td><c:out value="$${row.max}"/></td>
+                                    <td><c:out value="$${row.avg}"/></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

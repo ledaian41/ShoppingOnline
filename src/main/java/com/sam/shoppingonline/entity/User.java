@@ -28,7 +28,6 @@ public class User {
     @Column(name = "password", length = 450)
     @NotNull
     private String password;
-    private String matchingPassword;
 
     @Column(name = "enabled")
     @NotNull
@@ -49,14 +48,6 @@ public class User {
     @NotNull
     @NotEmpty
     private String address;
-
-    public String getMatchingPassword() {
-        return matchingPassword;
-    }
-
-    public void setMatchingPassword(String matchingPassword) {
-        this.matchingPassword = matchingPassword;
-    }
 
     public String getFirstName() {
         return firstName;

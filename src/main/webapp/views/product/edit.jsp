@@ -7,13 +7,14 @@
     <body>
         <jsp:include page="../navigation.jsp"/>
         <form:form class="form-horizontal" method="post" modelAttribute="product" action="./edit" enctype="multipart/form-data">
+            <div class="col-sm-1"></div>
             <h3>Update Product</h3>
             <form:input path="id" type="text" id="id" hidden="true"/>
             <form:input path="thumnail" type="text" id="thumnail" hidden="true"/>
             <div class="form-group">
                 <label class="control-label col-sm-1" for="name">Name</label>
                 <div class="col-sm-4">
-                    <form:input path="name" type="text" class="form-control" id="name" placeholder="Name"/>
+                    <form:input path="name" type="text" class="form-control" id="name" placeholder="Name" maxlength="20"/>
                     <form:errors path="name" cssStyle="color: red"/>
                 </div>
             </div>

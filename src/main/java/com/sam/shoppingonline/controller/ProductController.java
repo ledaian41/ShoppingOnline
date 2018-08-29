@@ -56,6 +56,7 @@ public class ProductController {
     public ModelAndView index(
             @RequestParam(value = "page", required = false) Integer page,
             @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "cate", required = false) Integer cateId,
             ModelMap mm) {
         if (page == null) {
             page = 0;
@@ -63,20 +64,44 @@ public class ProductController {
             page--;
         }
         List<Product> listProduct;
-        long totalPage;
+        long totalPage = 1;
         Sort sort = new Sort(new Sort.Order(Sort.Direction.ASC, "name"));
-        Pageable pageable = new PageRequest(page, Constant.NUMBER_ELEMENT_IN_PAGE, sort);
+        Pageable pageable = new PageRequest(page,
+                Constant.NUMBER_ELEMENT_IN_PAGE, sort);
         if (keyword == null || keyword.isEmpty()) {
-            listProduct = productRepository.paging(pageable);
-            totalPage = PagingUtil.totalPage(productRepository.count());
-            mm.remove("keyword");
+            if (cateId == null) {
+                listProduct = productRepository.paging(pageable);
+                totalPage = PagingUtil.totalPage(productRepository.count());
+                mm.remove("keyword");
+                mm.remove("cateId");
+            } else {
+                listProduct = productRepository.searchByCategory(cateId,
+                        pageable);
+                totalPage = PagingUtil.totalPage(productRepository
+                        .countProductByCategory(cateId));
+                mm.put("cateId", cateId);
+                mm.remove("keyword");
+            }
         } else {
-            listProduct = productRepository.findAndPaging(keyword, pageable);
-            totalPage = PagingUtil.totalPage(productRepository.countResultForSearch(keyword));
-            mm.put("keyword", keyword);
+            if (cateId == null) {
+                listProduct = productRepository.findAndPaging(keyword,
+                        pageable);
+                totalPage = PagingUtil.totalPage(productRepository
+                        .countResultForSearch(keyword));
+                mm.put("keyword", keyword);
+                mm.remove("cateId");
+            } else {
+                listProduct = productRepository.searchByCateAndKeyWord(keyword,
+                        cateId, pageable);
+                totalPage = PagingUtil.totalPage(productRepository
+                        .countResultForSearchByCateAndKeyWord(keyword, cateId));
+                mm.put("cateId", cateId);
+                mm.put("keyword", keyword);
+            }
         }
         mm.put("page", page + 1);
         mm.put("totalPage", totalPage);
+        mm.put("listCate", categoryRepository.findAll());
         LOGGER.log(Level.INFO, "info:{0}");
         return new ModelAndView("/product/index", "listProduct", listProduct);
     }

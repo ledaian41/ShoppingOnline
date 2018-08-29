@@ -11,6 +11,12 @@
                 <a href="${pageContext.request.contextPath}/cate/index" class="list-group-item">Categories</a>
                 <a href="${pageContext.request.contextPath}/product/index" class="list-group-item">Products</a>
                 <a href="${pageContext.request.contextPath}/report/stock" class="list-group-item">Report</a>
+            </div><br/><br/>
+            <p class="lead category">Categories</p>
+            <div class="list-group">
+                <c:forEach var="cate" items="${listCate}">
+                    <a href="./index?cate=${cate.id}" class="list-group-item">${cate.name}</a>
+                </c:forEach>
             </div>
         </div>
         <div class="col-md-11"> 
@@ -18,9 +24,12 @@
             <form action="index" method="GET">
                 <div>
                     <div class="col-md-2">
+                        <c:if test="${cateId != null}">
+                            <input class="form-control" name="cate" value="${cateId}" type="hidden"/>
+                        </c:if>
                         <input class="form-control" id="keyword" name="keyword" value="${keyword}" placeholder="Searching..." />
                     </div>
-                    <input type="submit" value="Search" class="btn btn-default" style="display: inline" />
+                    <input type="submit" value="Search" class="btn btn-default" style="display: inline" onclick="actionSearch()" />
                     <a class="btn btn-default" href="create">New Product</a>
                 </div>
             </form>
@@ -80,5 +89,14 @@
                 </div>
             </s:if>
         </div>
+        <script>
+            const actionSearch = () => {
+                let searchField = document.getElementById('keyword');
+                const keyword = searchField.value;
+                if (keyword.length === 0) {
+                    searchField.removeAttribute('name');
+                }
+            };
+        </script>
     </body>
 </html>

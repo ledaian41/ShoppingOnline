@@ -7,49 +7,49 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Register Form</title>
-        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.ico"/>
-        <link href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css"/>
-        <link href="${pageContext.request.contextPath}/resources/css/util.css" rel="stylesheet" type="text/css"/>
-    </head>
+    <jsp:include page="../header.jsp"/>
     <body>
-        <div class="container center-block" style="padding-top: 150px;">
+        <jsp:include page="../customer_nav.jsp"/>
+        <div class="container center-block">
             <h1 style="text-align: center;">Register</h1>
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <form class="form-horizontal" action="/register" th:object="${user}" method="POST" enctype="utf8">
+                <form class="form-horizontal" action="./register" th:object="${user}" method="POST" enctype="utf8">
+                    <p style="color: red;text-align: center">${error}</p>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input class="input100" type="text" name="username" placeholder="Username" required="true" maxlength="20">
+                    </div>
                     <div class="form-group">
                         <label>First name</label>
-                        <input class="input100" type="text" name="firstName" placeholder="First name">
+                        <input class="input100" type="text" name="firstName" placeholder="First name" required="true" maxlength="20">
                     </div>
                     <div class="form-group">
                         <label>Last name</label>
-                        <input class="input100" type="text" name="lastName" placeholder="Last name">
+                        <input class="input100" type="text" name="lastName" placeholder="Last name" required="true" maxlength="20">
                     </div>
                     <div class="form-group">
                         <label>Phone number</label>
-                        <input class="input100" type="text" name="phone" placeholder="Phone number">
+                        <input id="phone" class="input100" type="text" name="phone" placeholder="Phone number" required="true" maxlength="15" onchange="checkPhone()">
+                        <p id="error-phone" style="color: red"></p>
                     </div>
                     <div class="form-group">
                         <label>Address</label>
-                        <input class="input100" type="text" name="address" placeholder="Address">
+                        <input class="input100" type="text" name="address" placeholder="Address" required="true" maxlength="30">
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <input id="password" class="input100" type="password" name="password" placeholder="Password" onchange="checkPassword()" required="true">
                     </div>
                     <div class="form-group">
                         <label>Confirm</label>
-                        <input class="input100" type="password" name="matchingPassword" placeholder="Password">
+                        <input id="matching" class="input100" type="password" placeholder="Password" onchange="checkPassword()" required="true">
+                        <p id="error-notmatched" style="color: red"></p>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-6">
                             <div class="container-login100-form-btn">
-                                <button class="login100-form-btn" type="submit">Submit</button>
+                                <button id="submit-btn" class="login100-form-btn" type="submit">Submit</button>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -61,5 +61,29 @@
                 </form>
             </div>
         </div>
+        <script>
+            const submit_btn = document.getElementById('submit-btn');
+            const checkPhone = () => {
+                let phone = document.getElementById('phone').value;
+                if (isNaN(phone)) {
+                    document.getElementById('error-phone').innerHTML = 'Phone shoud be number';
+                    submit_btn.disabled = true;
+                } else {
+                    document.getElementById('error-phone').innerHTML = '';
+                    submit_btn.disabled = false;
+                }
+            }
+            const checkPassword = () => {
+                let pass = document.getElementById('password').value;
+                let match = document.getElementById('matching').value;
+                if (pass != '' & match != '' & pass !== match) {
+                    document.getElementById('error-notmatched').innerHTML = 'Not matched!';
+                    submit_btn.disabled = true
+                } else {
+                    document.getElementById('error-notmatched').innerHTML = '';
+                    submit_btn.disabled = false;
+                }
+            }
+        </script>
     </body>
 </html>

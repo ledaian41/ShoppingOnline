@@ -19,8 +19,11 @@
                 <div class="col-md-9">
                     <form action="index" method="GET">
                         <div class="search-pannel form-inline">
+                            <c:if test="${cateId != null}">
+                                <input class="form-control" name="cate" value="${cateId}" type="hidden"/>
+                            </c:if>
                             <input class="form-control" id="keyword" name="keyword" value="${keyword}" placeholder="Searching..." />
-                            <input class="search-btn btn btn-default" type="submit" value="Search" />
+                            <input class="search-btn btn btn-default" type="submit" value="Search" onclick="actionSearch()"/>
                         </div>
                     </form>
                     <c:choose>
@@ -58,11 +61,14 @@
                                     <div class="col-sm-4 col-lg-4 col-md-4">
                                         <div class="thumbnail">
                                             <a href="./details?id=${row.id}" >
-                                                <img src="${pageContext.request.contextPath}/image/${row.thumnail}" alt="image ${row.name}">
+                                                <img style="height: 300px" src="${pageContext.request.contextPath}/image/${row.thumnail}" alt="image ${row.name}">
                                             </a>
                                             <div class="caption">
                                                 <h4 class="pull-right">$${row.price}</h4>
-                                                <h4><a href="./details?id=${row.id}">${row.name}</a>
+                                                <h4>
+                                                    <a href="./details?id=${row.id}">
+                                                        ${row.name}
+                                                    </a>
                                                 </h4>
                                                 <p>${row.description}.</p>
                                                 <a class="btn btn-default" href="${pageContext.request.contextPath}/shop/order?id=${row.id}&quantity=1" >Buy</a>
@@ -108,7 +114,7 @@
                             </c:if>
                         </c:when>
                         <c:otherwise>
-                            <h3>Sorry! Comming soon...</h3>
+                            <h3>Sorry, no products here</h3>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -116,5 +122,14 @@
         </div>
         <!-- /.container -->
         <jsp:include page="../footer.jsp"/>
+        <script>
+            const actionSearch = () => {
+                let searchField = document.getElementById('keyword');
+                const keyword = searchField.value;
+                if (keyword.length === 0) {
+                    searchField.removeAttribute('name');
+                }
+            };
+        </script>
     </body>
 </html>

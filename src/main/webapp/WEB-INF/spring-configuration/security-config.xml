@@ -10,7 +10,7 @@
     <http auto-config="true">
         <access-denied-handler error-page="/auth/403page" />
         
-<!--        <intercept-url pattern="/cate/index**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/cate/index**" access="ROLE_ADMIN" />
         <intercept-url pattern="/cate/create**" access="ROLE_ADMIN" />
         <intercept-url pattern="/cate/edit**" access="ROLE_ADMIN" />
         <intercept-url pattern="/cate/details**" access="ROLE_ADMIN" />
@@ -22,7 +22,7 @@
         <intercept-url pattern="/product/details**" access="ROLE_ADMIN" />
         <intercept-url pattern="/product/delete**" access="ROLE_ADMIN" />
         
-        <intercept-url pattern="/report/stock**" access="ROLE_ADMIN" />-->
+        <intercept-url pattern="/report/stock**" access="ROLE_ADMIN" />
         
         <form-login login-processing-url="/j_spring_security_login" login-page="/auth/login" default-target-url="/home/index"
                     authentication-failure-url="/auth/login?authfailed" username-parameter="username"

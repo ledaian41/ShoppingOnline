@@ -69,18 +69,27 @@ public class HomeController {
             } else {
                 listProduct = productRepository.searchByCategory(cateId,
                         pageable);
-                totalPage = PagingUtil.totalPage(
-                        productRepository.countProductByCategory(cateId));
+                totalPage = PagingUtil.totalPage(productRepository
+                        .countProductByCategory(cateId));
                 mm.put("cateId", cateId);
                 mm.remove("keyword");
             }
         } else {
-            listProduct = productRepository.findAndPaging(keyword,
-                    pageable);
-            totalPage = PagingUtil.totalPage(productRepository
-                    .countResultForSearch(keyword));
-            mm.put("keyword", keyword);
-            mm.remove("cateId");
+            if (cateId == null) {
+                listProduct = productRepository.findAndPaging(keyword,
+                        pageable);
+                totalPage = PagingUtil.totalPage(productRepository
+                        .countResultForSearch(keyword));
+                mm.put("keyword", keyword);
+                mm.remove("cateId");
+            } else {
+                listProduct = productRepository.searchByCateAndKeyWord(keyword,
+                        cateId, pageable);
+                totalPage = PagingUtil.totalPage(productRepository
+                        .countResultForSearchByCateAndKeyWord(keyword, cateId));
+                mm.put("cateId", cateId);
+                mm.put("keyword", keyword);
+            }
         }
         mm.put("page", page + 1);
         mm.put("totalPage", totalPage);
